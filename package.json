@@ -1,0 +1,12 @@
+{
+  "name": "asg-interview",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "(cd client && npm install); (cd server && npm install)"
+  },
+  "keywords": [],
+  "author": "jeremyzantua@gmail.com",
+  "license": "ISC"
+}
