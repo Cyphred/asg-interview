@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+
 async function loginUser(credentials) {
-    return fetch('http://localhost:8000/api/login', {
+    return fetch('http://localhost:8000/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -26,18 +32,52 @@ export default function Login({setToken}) {
     }
 
     return (
-        <div>
-            <div className="login-wrapper">
-                <h1>Login</h1>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Username" required onChange={e => setUserName(e.target.value)} />
-                    <br />
-                    <input type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)} />
-                    <br />
-                    <button type="submit">Log In</button>
-                </form>
-            </div>
-        </div>
+        <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+                minHeight: '100vh',
+                bgcolor: 'primary.main',
+            }}
+        >
+            <Grid item xs={3}>
+                <Paper variant="outlined" sx={{ p: 1 }} >
+                    <div className="login-wrapper">
+                        <Box display="flex" justifyContent="center" alignItems="center">
+                            <h1>Jeremy's Chat App</h1>
+                        </Box>
+                        <form onSubmit={handleSubmit}>
+                            <TextField
+                                required
+                                label="Username"
+                                onChange={e => setUserName(e.target.value)}
+                                sx={{ ml: 1, mr: 1 }}
+                            />
+                            <br />
+                            <TextField
+                                required
+                                label="Password"
+                                type="password"
+                                onChange={e => setPassword(e.target.value)}
+                                sx={{ mt: 1, ml: 1, mr: 1 }}
+                            />
+                            <Box
+                                display="flex"
+                                justifyContent="flex-end"
+                                alignItems="flex-end"
+                            >
+                                <Button type="submit" variant="contained" sx={{ mr: 1, mb: 1, mt: 1 }} >
+                                    Log In
+                                </Button>
+                            </Box>
+                        </form>
+                    </div>
+                </Paper>
+            </Grid>
+        </Grid>
     );
 }
 
